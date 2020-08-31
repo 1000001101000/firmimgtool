@@ -4,7 +4,9 @@ Fork of the original tool used to build/extract firmware images for the first ge
 
 So far I have:
 - Created a simple Makefile that supports cross compile.
-- Tested it on armel and PowerPC (32-bit). The original code fails on 64-bit architectures (working on it).
+- Changed some data types to allow it to work on 64-bit platforms
+- made other minor changes to address compiler warnings. 
+- set up workflow to generate binaries for relavant platforms.
 
 
 The original file can be found here:
