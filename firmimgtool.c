@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdint.h>
 
-typedef int32_t  word;
+typedef uint32_t word;
 typedef unsigned short half;
 typedef unsigned char  byte;
 
