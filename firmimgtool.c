@@ -32,7 +32,7 @@ struct firminfo {
   word initrd_offset, initrd_size;
 };
 
-int BE; //endian 1:big 0:little
+unsigned int BE; //endian 1:big 0:little
 
 void showinfo(struct firminfo *pf, word sum, char *fni)
 {
