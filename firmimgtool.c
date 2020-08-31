@@ -75,7 +75,7 @@ int rd_file(char *fn, void *buf, int max, int min)
   return r;
 }
 
-int wr_file(char *fn, void *buf, int len)
+int wr_file(char *fn, void *buf, size_t len)
 {
   FILE *fp;
 
