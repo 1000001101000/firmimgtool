@@ -144,6 +144,7 @@ int main(int argc, char *argv[])
   c = 0x01000000;
   BE = *(byte *)(&c);
 
+  fprintf(stderr, "Endian Check: %d \n", BE);
   /*-------- arguments --------*/
 
   for( c=1; c<argc; c++ ) {
