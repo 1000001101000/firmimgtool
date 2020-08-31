@@ -11,3 +11,6 @@ So far I have:
 
 The original file can be found here:
 https://web.archive.org/web/20170912222312/http://www.geocities.jp/trstat/firmhack.html
+
+Looks like a slightly newer version also here:
+https://web.archive.org/web/20150922131032/http://downloads.buffalo.nas-central.org/ALL_LS_KB_PPC/DevelopmentTools/Flash/Utilities/firmimgtool.c
