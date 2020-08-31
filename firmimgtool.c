@@ -38,21 +38,21 @@ void showinfo(struct firminfo *pf, word sum, char *fni)
 {
   printf("---- firmimg_file information ----\n");
   printf("filename : %s\n", fni);
-  printf("checksum : %08X\n", sum);
+  printf("checksum : %08lX\n", sum);
   printf("---- firmware information ----\n");
-  printf("info_ver : %08X\n", swap_w(pf->info_ver));
-  printf("firmid   : %08X\n", swap_w(pf->firmid));
+  printf("info_ver : %08lX\n", swap_w(pf->info_ver));
+  printf("firmid   : %08lX\n", swap_w(pf->firmid));
   printf("firmname : %s\n", pf->firmname);
   printf("subver   : %s\n", pf->subver);
   printf("version  : %d.%02d, build %04X\n",
           swap_h(pf->ver_major), swap_h(pf->ver_minor), swap_h(pf->build));
   printf("date     : %04d/%02d/%02d %02d:%02d:%02d\n",
           pf->year + 1900, pf->mon,  pf->day, pf->hour, pf->min,  pf->sec);
-  printf("firmsize : %08X\n", swap_w(pf->size));
-  printf("checksum : %08X\n", swap_w(pf->chksum));
-  printf("kernel   : offset %08X, size %08X\n",
+  printf("firmsize : %08lX\n", swap_w(pf->size));
+  printf("checksum : %08lX\n", swap_w(pf->chksum));
+  printf("kernel   : offset %08lX, size %08lX\n",
           swap_w(pf->kernel_offset), swap_w(pf->kernel_size));
-  printf("initrd   : offset %08X, size %08X\n",
+  printf("initrd   : offset %08lX, size %08lX\n",
           swap_w(pf->initrd_offset), swap_w(pf->initrd_size));
 }
 
