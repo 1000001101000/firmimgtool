@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Memory allocation error\n");
     return 1;
   }
-  fi = buf;
+  fi = (struct firminfo *)buf;
   init_fi(fi);
 
   c = 0x01000000;
