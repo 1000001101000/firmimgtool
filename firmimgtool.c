@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-typedef unsigned long  word;
+typedef int32_t  word;
 typedef unsigned short half;
 typedef unsigned char  byte;
 
