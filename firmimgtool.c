@@ -8,7 +8,7 @@ typedef uint32_t word;
 typedef unsigned short half;
 typedef unsigned char  byte;
 
-#define swap_w(w) (BE)?(w):((((w)<<24)&0xff000000)|(((w)<< 8)&0x00ff0000)|\
+#define swap_w(w) (BE)?(w):(word)((((w)<<24)&0xff000000)|(((w)<< 8)&0x00ff0000)|\
                             (((w)>> 8)&0x0000ff00)|(((w)>>24)&0x000000ff))
 #define swap_h(w) (BE)?(w):((((w)<< 8)&0x0000ff00)|(((w)>> 8)&0x000000ff))
 
@@ -64,14 +64,14 @@ int rd_file(char *fn, void *buf, int max, int min)
 
   if ((fp = fopen(fn, "r")) == NULL) {
     fprintf(stderr, "Cannot open '%s' for reading\n", fn);
-    return -1;
+    return 0;
   }
   r = fread(buf, 1, max, fp);
   fclose (fp);
 
   if (r < min) {
     fprintf(stderr, "Cannot read '%s'\n", fn);
-    return -1;
+    return 0;
   }
   return r;
 }
@@ -101,13 +101,13 @@ void init_fi(struct firminfo *pf)
   time(&tt);
   t = localtime(&tt);
 
-  pf->info_ver = swap_w(0x00000001);
-  pf->firmid = swap_w(0x00002001);
+  pf->info_ver = swap_w((word)0x00000001);
+  pf->firmid = swap_w((word)0x00002001);
   strcpy(pf->firmname, "HD-HTGL(YOSHIMUNE)");
   strcpy(pf->subver, "FLASH 2.0");
-  pf->ver_major = swap_h(0x0001);
-  pf->ver_minor = swap_h(0x0004);
-  pf->build = swap_h(0x0000);
+  pf->ver_major = swap_h((half)0x0001);
+  pf->ver_minor = swap_h((half)0x0004);
+  pf->build = swap_h((half)0x0000);
   pf->chksum = 0;
   pf->year = t->tm_year;
   pf->mon  = t->tm_mon + 1;
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 {
   struct firminfo *fi;
   word *wp, w, sum;
-  int c, fs;
+  word c, fs;
   byte *buf;
 
   char *fni, *fnk, *fnr, *fnf;
@@ -187,21 +187,21 @@ int main(int argc, char *argv[])
 
   if (m & OP_M) {
     if (m & OP_F) {
-      if ((c = rd_file(fnf, fi, sizeof(*fi), 1)) < 0) {
+      if ((c = rd_file(fnf, fi, sizeof(*fi), 1)) == 0) {
         free(buf);
         return 1;
       }
       fi->chksum = 0;
     }
     fs = sizeof(*fi);
-    if ((c = rd_file(fnk, &buf[fs], MAXSIZE - fs, 1)) < 0) {
+    if ((c = rd_file(fnk, &buf[fs], MAXSIZE - fs, 1)) == 0) {
       free(buf);
       return 1;
     }
     fi->kernel_offset = swap_w(fs);
     fi->kernel_size = swap_w(c);
     fs += c;
-    if ((c = rd_file(fnr, &buf[fs], MAXSIZE + 4 - fs, 1)) < 0) {
+    if ((c = rd_file(fnr, &buf[fs], MAXSIZE + 4 - fs, 1)) == 0) {
       free(buf);
       return 1;
     }
@@ -217,7 +217,7 @@ int main(int argc, char *argv[])
     }
   }
   else {
-    if ((fs = rd_file(fni, buf, MAXSIZE, sizeof(*fi))) < 0) {
+    if ((fs = rd_file(fni, buf, MAXSIZE, sizeof(*fi))) == 0) {
       free(buf);
       return 1;
     }
