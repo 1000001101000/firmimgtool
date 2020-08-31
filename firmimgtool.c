@@ -148,23 +148,23 @@ int main(int argc, char *argv[])
   fprintf(stderr, "Endian Check: %d \n", BE);
   /*-------- arguments --------*/
 
-  for( c=1; c<argc; c++ ) {
-    if (*(p = argv[c]) == '-') {
+  for( int i=1; i<argc; i++ ) {
+    if (*(p = argv[i]) == '-') {
       while(*++p != 0) {
         switch(*p) {
         case 'i': m |= OP_I; break;
         case 'c': m |= OP_C; break;
         case 'm': m |= OP_M; break;
-        case 'k': fnk = argv[++c]; break;
-        case 'r': fnr = argv[++c]; break;
-        case 'f': fnf = argv[++c]; m |= OP_F; break;
+        case 'k': fnk = argv[++i]; break;
+        case 'r': fnr = argv[++i]; break;
+        case 'f': fnf = argv[++i]; m |= OP_F; break;
         case 'h': m = OP_H; break;
         default : m = OP_H;
         }
       }
     }
     else
-      fni = argv[c];
+      fni = argv[i];
   }
 
   if ((m == OP_H) && (fni != NULL))
