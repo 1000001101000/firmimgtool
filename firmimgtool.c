@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
     fi->size = swap_w(fs);
     if (fs > MAXSIZE) {
       fprintf(stderr, "Firmware size overflow (maximum %d bytes)\n",
-              MAXSIZE - sizeof(*fi));
+              (int)(MAXSIZE - sizeof(*fi)));
       free(buf);
       return 1;
     }
