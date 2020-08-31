@@ -147,7 +147,8 @@ int main(int argc, char *argv[])
 
   /*-------- arguments --------*/
 
-  for( int i=1; i<argc; i++ ) {
+  int i;
+  for( i=1; i<argc; i++ ) {
     if (*(p = argv[i]) == '-') {
       while(*++p != 0) {
         switch(*p) {
